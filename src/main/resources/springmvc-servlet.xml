@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+ http://www.springframework.org/schema/mvc
+ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-4.0.xsd
+ http://www.springframework.org/schema/websocket
+ http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd">
+
+	<!-- <context:annotation-config> declares support for general annotations 
+		such as @Required, @Autowired, @PostConstruct, and so on. <mvc:annotation-driven 
+		/> declares explicit support for annotation-driven MVC controllers (i.e. 
+		@RequestMapping, @Controller, although support for those is the default behaviour), 
+		as well as adding support for declrative validation via @Valid and message 
+		body marshalling with @RequestBody/ResponseBody. -->
+	<mvc:annotation-driven />
+
+	<!-- <context:annotation-config /> -->
+
+	<!-- Scans for annotated @Controllers in the classpath -->
+	<!-- The use of <context:component-scan> implicitly enables the functionality 
+		of <context:annotation-config>. There is usually no need to include the <context:annotation-config> 
+		element when using <context:component-scan>. -->
+	<!-- http://stackoverflow.com/questions/7414794 -->
+	<context:component-scan base-package="springmvc.web"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- the mvc resources tag does the magic -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- JSTL resolver -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="1000000" />
+	</bean>
+	
+	<websocket:handlers>
+		<websocket:mapping handler="myhandler" path="/myhandle"/>
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	
+	<bean id="myhandler" class="springmvc.web.websocket.MyHandler"></bean>
+
+</beans>
