@@ -12,4 +12,4 @@
 
 下载 
 1.展开git repository试图  clone a git repository and add the clone to this view
-2.从正常的java ee项目import一个对应类型的项目即可
+2.从正常的java ee项目import一个对应类型的项目即可(maven)
