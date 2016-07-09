@@ -56,7 +56,7 @@ public class AppointmentsController {
 	@RequestMapping(path = "/new", method = RequestMethod.GET)
 	public String getNew() {
 		log.info("forward");
-		return "redirect:/appointments";
+		return "redirect:/appointments/get";
 	}
 
 	@RequestMapping(path = "/test", method = RequestMethod.GET)
