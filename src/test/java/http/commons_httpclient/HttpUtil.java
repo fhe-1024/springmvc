@@ -1,4 +1,4 @@
-package http.httpclient;
+package http.commons_httpclient;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -16,6 +16,7 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 public class HttpUtil {
 
 	public static String get(String url) throws Exception {
+		
 		HttpClient client = new HttpClient();
 		client.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, "UTF-8");
 		client.getHttpConnectionManager().getParams().setConnectionTimeout(1000 * 500);
