@@ -17,7 +17,7 @@ import org.junit.rules.ExpectedException;
  *
  */
 
-public class MyTest {
+public class ExceptionTest {
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void testIndexOutOfBoundsException() {
 		ArrayList<Object> emptyList = new ArrayList<>();

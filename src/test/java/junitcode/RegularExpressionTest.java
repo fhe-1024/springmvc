@@ -13,14 +13,12 @@ public class RegularExpressionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.out.println("before");
 		pattern = Pattern.compile(zipRegEx);
 	}
 
 	@Test
 	public void verifyGoodZipCode() throws Exception {
-		System.out.println("test");
-		Matcher mtcher = pattern.matcher("221");
+		Matcher mtcher = pattern.matcher("22176");
 		boolean isValid = mtcher.matches();
 		assertTrue("Pattern did not validate zip code", isValid);
 	}
