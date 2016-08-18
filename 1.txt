@@ -1,2 +1,3 @@
-23中设计模式
+23中设计模式   个人推荐http://www.tutorialspoint.com/design_pattern/factory_pattern.htm
 正则表达式
+
