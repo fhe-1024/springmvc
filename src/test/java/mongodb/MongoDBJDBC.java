@@ -32,7 +32,7 @@ public class MongoDBJDBC {
         //检索查看结果  
         FindIterable<Document> findIterable = collection.find();  
         MongoCursor<Document> mongoCursor = findIterable.iterator();  
-        while(mongoCursor.hasNext()){  
+        while(mongoCursor.hasNext()){
            System.out.println(mongoCursor.next());  
         }  
 		
